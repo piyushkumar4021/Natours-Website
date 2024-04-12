@@ -1,0 +1,56 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin makeItCenter {
+  & {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/*
+************ MEDIA QUERY MANAGER ************
+HOW TO USE?
+- @include respond(keyword) { YOUR CODE };
+
+KEYWODS:
+- phone         37.5em      ( 0 - 600px )
+- tab-port      56.25em     ( 600px - 900px )
+- tab-land      75em        ( 900px - 1200px )
+- big-desktop   112.5em     ( 1800px+ )
+
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
